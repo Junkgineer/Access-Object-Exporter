@@ -66,11 +66,17 @@ The ControlType property defines what type of control it is (textbox, combo box,
 
 **_Export_Queries()_** - Exports the proper Queries saved in the database, and saves them as .sql files. It should be noted as an FYI that Access queries are not automatically compatible with any other SQL query, so simply running these queries in MySQL or MS-SQL will likely be met with errors.
 
+# Extras
+
 **_Validate_Data()_** - As an added bonus, this function checks the data in the database for a couple of common errors that are throwm when attempting to import Access databases into a MS-SQL server via the MS SQL Server Import and Export Data tool. 
     
 **_CheckDates()_** - Access will let you enter an incorrectly formatted date into a date field unless told not to, wreaking havoc when a conventional SQL server is trying to read it. This won't FIX the issue, but it will tell you what table and column contains an error.
 
 **_CheckLongvarCharCount()_** - There's no easy, automatic translation of super long text fields that Access allows into MS-SQL. This checks for fields containing more than 8000 characters of text...just in case someone had pasted in the contents of an entire email chain, for instance.
+
+**_ListLinkedTables()_** - Outputs an easily digestible list in the immediate window of all the externally linked tables.
+
+**_ConvertToLocal()_** - Converts the database to an entirely local version. Get's finniky with linked spreadsheets, but does pretty well all around.Iterates the linked tables, and sends each one to **_MakeLocalTable(tableName As String, Optional deleteOriginal As Boolean = True)_**
 
 # Disclaimers
 
@@ -78,7 +84,7 @@ _I've used this on Access 2010 and 2016 without issue. It does require certain r
 
 _This was written to accommodate exporting multiple HUGE Access databases that would otherwise be far too time consuming. If you don't have many forms, queries, or modules in your database, it's probably faster and easier to just do it manually._
 
-_Access databases are typically created by people who don't really know how to do it properly, and are ad-hoc. Microsoft recognizes this and makes Access very forgiving. Therefore, they can have all kinds of messy problems, including special characters in table/column names that would normally be illegal. There are a couple places in this module that attempts to fix these, but is by no means all-inclusive. Feel free to add checks of your own._
+_Access databases are typically created by people who don't really know how to do proper SQL databases, and are ad-hoc. Microsoft recognizes this and makes Access very forgiving. Therefore, they can have all kinds of messy problems, including special characters in table/column names that would normally be illegal. There are a couple places in this module that attempts to fix these, but is by no means all-inclusive. Feel free to add checks of your own._
 
 _This code is messy. I wrote it to use with a much larger application, and post processing occurs there. You will probably need to do the same, particularly with the VBA json's._
 
