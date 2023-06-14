@@ -76,6 +76,8 @@ The ControlType property defines what type of control it is (textbox, combo box,
 
 **_ListLinkedTables()_** - Outputs an easily digestible list in the immediate window of all the externally linked tables.
 
+**_ListLinkedTablesCSV()_** - Same data as ListLinkedTables(), but writes a CSV file instead of just printing to the Debug console.
+
 **_ConvertToLocal()_** - Converts the database to an entirely local version. Get's finniky with linked spreadsheets, but does pretty well all around.Iterates the linked tables, and sends each one to **_MakeLocalTable(tableName As String, Optional deleteOriginal As Boolean = True)_**
 
 # Disclaimers
